@@ -23,13 +23,12 @@ public class MyChatServerInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = socketChannel.pipeline();
 
         //新增管道
-
         pipeline.addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
 
         //以上配置都是编解码相关
-        pipeline.addLast(null);
+        pipeline.addLast(new MyChatServerHandler());
 
     }
 }

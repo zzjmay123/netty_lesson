@@ -26,7 +26,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
                 //如果循环到的不是
                 channel1.writeAndFlush(channel.remoteAddress() +"发送消息"+s+"\n");
             }else{
-                channel.writeAndFlush("[自己]"+ s);
+                channel1.writeAndFlush("[自己]"+ s);
             }
         });
     }
@@ -40,7 +40,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
         //将连接好的channel，放入channelGroup中
-        channelGroup.writeAndFlush("【服务器器】"+channel.remoteAddress()+"加入\n");
+        channelGroup.writeAndFlush("【服务器】"+channel.remoteAddress()+"加入\n");
 
         channelGroup.add(channel);
     }
@@ -62,5 +62,25 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
         ctx.close();
+    }
+
+    /**
+     * 链接激活
+     * @param ctx
+     * @throws Exception
+     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        Channel channel = ctx.channel();
+
+        System.out.println(channel.remoteAddress() +"上线");
+    }
+
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        Channel channel = ctx.channel();
+
+        System.out.println(channel.remoteAddress()+"下线");
     }
 }

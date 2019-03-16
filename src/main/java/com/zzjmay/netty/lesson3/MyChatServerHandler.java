@@ -54,7 +54,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
 
-        channelGroup.writeAndFlush("【服务器】"+channel.remoteAddress()+"离开");
+        channelGroup.writeAndFlush("【服务器】"+channel.remoteAddress()+"离开\n");
 
     }
 

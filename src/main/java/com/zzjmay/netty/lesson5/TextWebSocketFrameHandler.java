@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 
 /**
  * TextWebSocketFrame WebSocket处理文本的消息类型
+ * 因为缺少心跳机制，所以长连接是感知不到的客户端没有网络的情况
+ *
  * Created by zzjmay on 2019/3/16.
  */
 public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {

@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package com.zzjmay.netty.lesson6;
+
+//设置编译器的处理格式
+option optimize_for = SPEED;
+
+option java_package = "com.zzjmay.netty.lesson6";
+option java_outer_classname = "DataInfo";
+
+//定义消息体
+
+message Student{
+    required string name =1;
+
+    optional int32 age=2;
+
+    optional string address=3;
+}
+
+

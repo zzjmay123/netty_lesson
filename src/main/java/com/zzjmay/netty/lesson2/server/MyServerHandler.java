@@ -12,6 +12,7 @@ import java.util.UUID;
 public class MyServerHandler extends SimpleChannelInboundHandler<String> {
 
 
+    @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String msg) throws Exception {
 
         //channelHandlerContext netty的上下文

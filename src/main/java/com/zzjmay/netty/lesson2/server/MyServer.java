@@ -20,9 +20,15 @@ public class MyServer {
 
             ServerBootstrap serverBootstrap = new ServerBootstrap();
 
-            serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
+            serverBootstrap
+                    //注册测EventLoop
+                    .group(bossGroup,workerGroup)
+                    //使用NIO编程
+                    .channel(NioServerSocketChannel.class)
+                    //初始化Handler链
                     .childHandler(new MyServerInitializer());
 
+            //绑定服务器以接受连接
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();
 
